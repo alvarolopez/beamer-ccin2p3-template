@@ -1,0 +1,90 @@
+\ProvidesPackage{beamerthemeccin2p3}
+
+\usepackage{multido}
+
+\mode<presentation>
+
+\newdimen\head@height
+\head@height=42pt
+
+\definecolor{ccblue}{RGB}{61,191,225}
+\setbeamercolor{section in head}{fg=black}
+\setbeamercolor{talk title}{fg=white}
+\setbeamercolor{date in foot}{fg=black}
+
+\setbeamercolor{alerted text}{fg=ccblue!90!black}
+\setbeamerfont{alerted text}{series=\bfseries}
+
+\setbeamertemplate{navigation symbols}{}
+
+\newbox\logobox
+\setbox\logobox\hbox{\includegraphics[height=\head@height]{images/logo_CC_IN2P3.png}}
+
+\defbeamertemplate*{headline}{ccin2p3 theme}{\hrule height0pt depth0pt}
+
+
+\setbeamertemplate{itemize item}{{\color{ccblue}$\bullet$}}
+\setbeamertemplate{itemize subitem}{{\color{ccblue}\textbf{--}}}
+\setbeamertemplate{itemize subsubitem}{{\color{ccblue}$\scriptstyle\blacktriangleright$}}
+
+
+\setbeamertemplate{background}{
+    % only on first page
+    \ifnum\thepage=1\relax
+        \includegraphics[width=\paperwidth,height=\paperheight]{images/background_title.png}
+    \else
+        \vbox to \paperheight{
+        \includegraphics[width=\paperwidth]{images/background_header.png}
+        \vfil
+        \includegraphics[width=\paperwidth]{images/background_slide.png}}
+    \fi
+}
+
+\setbeamertemplate{title page}{
+    \lineskip=0pt
+    \insertframetitle
+    \vskip150pt
+    \hskip80pt\vbox to120pt{
+        \advance\hsize-70pt
+        \begin{raggedright}
+            \begin{beamercolorbox}{talk title}
+                \textbf{\Large\inserttitle}
+                \bigskip
+
+                {\normalsize\insertdate}
+                \bigskip
+        
+                \textit{\normalsize\insertauthor}
+                \end{beamercolorbox}
+        \end{raggedright}
+        \vfill
+    }
+    \addtocounter{framenumber}{-1}
+}
+
+\defbeamertemplate*{frametitle}{ccin2p3 theme} {
+    \nointerlineskip
+    \baselineskip=0pt
+    \lineskip=0pt
+    \parsep=0pt
+    \newdimen\headI
+    \headI=\head@height
+    \advance\headI-15pt
+    \begin{beamercolorbox}[wd=\paperwidth,ht=\headI,dp=10pt]{section in head}
+        \hskip40pt \textbf{\insertframetitle\hfill\ }
+    \end{beamercolorbox}
+    \vspace{-1pt}
+}
+
+\defbeamertemplate*{footline}{ccin2p3 theme}{
+        \leavevmode
+        \begin{beamercolorbox}[wd=\paperwidth,ht=8ex,dp=0ex]{date in foot}
+        \ifnum\thepage>1\relax
+            \hfill \tiny
+            {\flushleft \quad \today \hfill ~ \quad \strut \\ \vspace{3pt}
+            \quad \insertshortdate}
+            {\vspace{3pt} \hfill\hfill\hfill \insertframenumber \quad }
+        \fi
+        \end{beamercolorbox}\
+}
+
